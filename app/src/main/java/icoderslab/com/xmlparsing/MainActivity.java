@@ -58,7 +58,7 @@ public class parser extends AppCompatActivity {
         Node nodes = node.item(0);
         return nodes.getNodeValue();
 
-    }
+    } 
 
 
 }
