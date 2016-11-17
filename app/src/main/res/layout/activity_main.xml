@@ -1,21 +1,24 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_parser"
     android:layout_width="match_parent"
-    android:background="#66bb6a"
     android:layout_height="match_parent"
-    tools:context="icoderslab.com.xmlparsing.MainActivity" >
-
-
+    android:orientation="vertical"
+    android:background="#388e3c"
+    tools:context="icoderslab.com.xmlparsing.parser">
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/name"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="100dp"
         android:layout_width="wrap_content"
+        android:textSize="24sp"
         android:textColor="#fff"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="86dp"
-        />
+        android:layout_marginLeft="100dp" />
 
-</RelativeLayout>
+
+
+
+</LinearLayout>
