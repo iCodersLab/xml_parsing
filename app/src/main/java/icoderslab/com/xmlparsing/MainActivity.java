@@ -1,69 +1,64 @@
 package icoderslab.com.xmlparsing;
 
-
-/*
-*
-* Created By Abeer Qamer
-*
-*
-* */
-
-import java.io.InputStream;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.widget.TextView;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import android.app.Activity;
-import android.os.Bundle;
-import android.widget.TextView;
+import java.io.InputStream;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
-import com.javatpoint.domxmlparsing.R;
 
-public class MainActivity extends Activity {
-    TextView tv1; // textview object
+public class parser extends AppCompatActivity {
 
-    @Override
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        tv1=(TextView)findViewById(R.id.textView1);
+        setContentView(R.layout.activity_parser);
+
+        TextView text1 = (TextView) findViewById(R.id.name);
+
+
         try {
-            InputStream is = getAssets().open("file.xml"); // the xml file to parse
+            InputStream in = getAssets().open("file.xml");
 
-
-            // DOM   = Document Object Model
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-
-            Document doc = dBuilder.parse(is);
-            Element element=doc.getDocumentElement();
+            DocumentBuilderFactory docb = DocumentBuilderFactory.newInstance();
+            DocumentBuilder doc = docb.newDocumentBuilder();
+            Document d = doc.parse(in);
+            Element element = d.getDocumentElement();
             element.normalize();
 
-            // used with DOM to grasp data from the xml file
-            NodeList nList = doc.getElementsByTagName("employee");
 
-            // this'll run for the entire items inside the file
-            for (int i=0; i<nList.getLength(); i++) {
+            NodeList nodeList = d.getElementsByTagName("employee");
+            for (int i = 0; i < nodeList.getLength(); i++) {
 
-                Node node = nList.item(i);
+                Node node = nodeList.item(i);
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element element2 = (Element) node;
-                    tv1.setText(tv1.getText()+"\n\nName : " + getValue("name", element2)+"\n");
-                    tv1.setText(tv1.getText()+"Profession : " + getValue("profession", element2)+"\n");
-                    tv1.setText(tv1.getText()+"---------------------------");
+                    text1.setText(text1.getText() + "\n" + getValue("name", element2) + "\n");
+
                 }
+
             }
-        } catch (Exception e) {e.printStackTrace();}
+        }
+            catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
     }
 
-    // to retrieve the value getValue() is used.
-    private static String getValue(String tag, Element element) {
-        NodeList nodeList = element.getElementsByTagName(tag).item(0).getChildNodes();
-        Node node = nodeList.item(0);
-        return node.getNodeValue();
+
+    public static String getValue(String tag, Element e) {
+
+        NodeList node = e.getElementsByTagName(tag).item(0).getChildNodes();
+        Node nodes = node.item(0);
+        return nodes.getNodeValue();
+
     }
+
 
 }
