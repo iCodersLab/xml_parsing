@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#388e3c"
+    android:background="#b99a8e"
     tools:context="icoderslab.com.xmlparsing.parser">
 
     <TextView
@@ -13,8 +13,6 @@
         android:layout_marginTop="30dp"
         android:layout_marginStart="100dp"
         android:layout_width="wrap_content"
-        android:textSize="24sp"
-        android:textColor="#fff"
         android:layout_height="wrap_content"
         android:layout_marginLeft="100dp" />
 
