@@ -2,6 +2,7 @@ package icoderslab.com.xmlparsing;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -12,6 +13,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 
+
 public class parser extends AppCompatActivity {
 
 
@@ -19,7 +21,7 @@ public class parser extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parser);
 
-        TextView text1 = (TextView) findViewById(R.id.name);
+        LinearLayout layout = (LinearLayout) findViewById(R.id.activity_parser);
 
 
         try {
@@ -35,10 +37,16 @@ public class parser extends AppCompatActivity {
             NodeList nodeList = d.getElementsByTagName("employee");
             for (int i = 0; i < nodeList.getLength(); i++) {
 
+                TextView text1 = new TextView(this);
+
                 Node node = nodeList.item(i);
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element element2 = (Element) node;
-                    text1.setText(text1.getText() + "\n" + getValue("name", element2) + "\n");
+                    text1.setTextSize(15);
+                    text1.setTextColor(0xFFFF0000);
+                    text1.setText(text1.getText()  + "Name: " +  getValue("name", element2) + "\n");
+                    text1.setText(text1.getText()  + "Profession: " + getValue("profession", element2) + "\n");
+                    layout.addView(text1);
 
                 }
 
@@ -58,7 +66,7 @@ public class parser extends AppCompatActivity {
         Node nodes = node.item(0);
         return nodes.getNodeValue();
 
-    } 
+    }
 
 
 }
